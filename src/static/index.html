@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau de Bord - Suivi des Prix</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Tableau de Bord - Suivi des Prix</h1>
+            <p>Suivez l'évolution des prix par catégorie et sous-catégorie</p>
+        </header>
+
+        <main>
+            <div class="controls">
+                <div class="file-navigation">
+                    <h3>🗂️ Navigation des Fichiers</h3>
+                    <p>Sélectionnez un fichier de données:</p>
+                    <div id="file-tree" class="file-tree"></div>
+                    <div id="selected-file-info" class="selected-file-info">
+                        <p>Aucun fichier sélectionné</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filters-section">
+                <h3>🔍 Filtres</h3>
+                <div class="filters-container">
+                    <div class="filter-group">
+                        <label for="marque-filter">Marque:</label>
+                        <input type="text" id="marque-filter" placeholder="Filtrer par marque...">
+                    </div>
+                    <div class="filter-group">
+                        <label for="type-filter">Type:</label>
+                        <input type="text" id="type-filter" placeholder="Filtrer par type...">
+                    </div>
+                    <div class="filter-group">
+                        <label for="gramage-filter">Gramage:</label>
+                        <input type="text" id="gramage-filter" placeholder="Filtrer par gramage...">
+                    </div>
+                    <div class="filter-group">
+                        <label for="origine-filter">Origine:</label>
+                        <input type="text" id="origine-filter" placeholder="Filtrer par origine...">
+                    </div>
+                    <div class="filter-group">
+                        <label for="format-filter">Format:</label>
+                        <input type="text" id="format-filter" placeholder="Filtrer par format...">
+                    </div>
+                    <div class="filter-group">
+                        <label for="prix-min-filter">Prix minimum:</label>
+                        <input type="number" id="prix-min-filter" placeholder="Prix min..." step="0.01">
+                    </div>
+                    <div class="filter-group">
+                        <label for="prix-max-filter">Prix maximum:</label>
+                        <input type="number" id="prix-max-filter" placeholder="Prix max..." step="0.01">
+                    </div>
+                    <div class="filter-actions">
+                        <button id="apply-filters-btn">Appliquer les Filtres</button>
+                        <button id="clear-filters-btn">Effacer les Filtres</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard">
+                <div class="stats-panel">
+                    <h3>📈 Statistiques</h3>
+                    <div id="stats-content">
+                        <p>Sélectionnez un fichier pour voir les statistiques</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-section">
+                    <h3>📊 Évolution des Prix</h3>
+                    <div class="chart-controls">
+                        <button class="chart-control-btn active" onclick="app.changeChartType('lines+markers')">Ligne + Points</button>
+                        <button class="chart-control-btn" onclick="app.changeChartType('lines')">Ligne</button>
+                        <button class="chart-control-btn" onclick="app.changeChartType('markers')">Points</button>
+                        <button class="chart-control-btn" onclick="app.toggleTrendLine()">Ligne de Tendance</button>
+                        <button class="chart-control-btn" onclick="app.exportChart()">Exporter PNG</button>
+                    </div>
+                    <div id="price-chart"></div>
+                    <div class="chart-info">
+                        <p><i>💡 Conseils d'utilisation :</i></p>
+                        <ul>
+                            <li>Cliquez sur un point pour voir les détails</li>
+                            <li>Utilisez la sélection par zone pour analyser une période</li>
+                            <li>Survolez les points pour un aperçu rapide</li>
+                            <li>Utilisez les outils de zoom et de panoramique</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="data-table">
+                <h3>📋 Données Détaillées</h3>
+                <div id="data-table-content">
+                    <p>Aucune donnée chargée</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
